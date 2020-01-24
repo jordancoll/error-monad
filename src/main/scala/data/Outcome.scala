@@ -2,15 +2,13 @@ package data
 
 import com.twitter.util.Future
 
-type Outcome[E, T] = Either[E, T]
+type Outcome[E, T] = EitherT[Future, E, T]
 
-type OutcomeF[E, T] = EitherT[Future, E, T]
+object Outcome {
 
-object OutcomeF {
+  def apply[E, A](either: Either[E, A]): Outcome[E, A] = EitherT(Future.value(either))
 
-  def apply[E, A](either: Either[E, A]): OutcomeF[E, A] = EitherT(Future.value(either))
+  def value[A](a: A): Outcome[Nothing, A] = apply(Right(a))
 
-  def value[A](a: A): OutcomeF[Nothing, A] = apply(Right(a))
-
-  def error[E](e: E): OutcomeF[E, Nothing] = apply(Left(e))
+  def error[E](e: E): Outcome[E, Nothing] = apply(Left(e))
 }
