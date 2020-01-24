@@ -1,4 +1,5 @@
 # Type-Safe Error Handling in Dotty
+Authors: [@evdokim](https://github.com/evdokim) and [@jordancoll](https://github.com/jordancoll)
 
 This repository demonstrates how [Union Types](https://dotty.epfl.ch/docs/reference/new-types/union-types.html) can be used for type-safe error handling.
 
@@ -30,4 +31,4 @@ Similar to `ErrorMonad`, we defined the `ErrorApplicative` type class that can e
 def [EA, EB, A, B](fa: F[EA, A]) product(fb: F[EB, B]): F[EA | EB, (A, B)]
 ```
 
-See an example that accumulates validation errors [here](./src/main/scala/examples/ValidationExample.scala)
+See an example that accumulates validation errors [here](./src/main/scala/examples/ValidationExample.scala).
