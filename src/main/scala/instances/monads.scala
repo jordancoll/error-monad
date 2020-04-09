@@ -11,7 +11,7 @@ given Monad[List] {
 }
 
 given Monad[Future] {
-  
+
   override def pure[A](a: A): Future[A] = Future(a)
 
   override def [A, B](fa: Future[A]) flatMap(f: A => Future[B]): Future[B] = fa.flatMap(f)

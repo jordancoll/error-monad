@@ -8,7 +8,7 @@ given ErrorMonad[Either] {
 
   override def pure[L, R](a: R): Either[L, R] = Right(a)
 
-  override def [L, LL, R, RR](either: Either[L, R]) 
+  override def [L, LL, R, RR](either: Either[L, R])
       flatMap(f: R => Either[LL, RR]): Either[L | LL, RR] = {
 
     either match {
@@ -27,11 +27,11 @@ given ErrorMonad[Either] {
   }
 }
 
-given (given m: Monad[Future]): ErrorMonad[Outcome] {
-  
+given (using m: Monad[Future]) as ErrorMonad[Outcome] {
+
   override def pure[L, R](a: R): Outcome[L, R] = Outcome.value(a)
-  
-  override def [L, LL, R, RR](outcome: Outcome[L, R]) 
+
+  override def [L, LL, R, RR](outcome: Outcome[L, R])
       flatMap(f: R => Outcome[LL, RR]): Outcome[L | LL, RR] = {
 
     val either = m.flatMap(outcome.value) {

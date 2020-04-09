@@ -1,7 +1,7 @@
 package examples
 
 import classes._
-import instances.{given, _}
+import instances.{_, given _}
 import data._
 
 import com.twitter.util.{Await, Future}
