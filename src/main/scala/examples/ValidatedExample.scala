@@ -1,7 +1,7 @@
 package examples
 
 import classes._
-import instances.given
+import instances.{given _}
 import data.Validated
 
 import Validated._
@@ -29,7 +29,7 @@ private def validateName(name: Name): Validated[InvalidName, Name] =
 private def validateAge(age: Age): Validated[InvalidAge, Age] =
   if age.value < 18 then
     Invalid(List(InvalidAge(age)))
-  else 
+  else
     Valid(age)
 
 private def validateAddress(address: Address): Validated[InvalidAdress, Address] =
