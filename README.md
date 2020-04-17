@@ -31,4 +31,4 @@ Similar to `ErrorMonad`, we defined the `ErrorApplicative` type class that can e
 def [EA, EB, A, B](fa: F[EA, A]) product(fb: F[EB, B]): F[EA | EB, (A, B)]
 ```
 
-See an example that accumulates validation errors [here](./src/main/scala/examples/ValidationExample.scala).
+See an example that accumulates validation errors [here](./src/main/scala/examples/ValidatedExample.scala).
