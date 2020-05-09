@@ -1,4 +1,4 @@
-val dottyVersion = "0.23.0-RC1"
+val dottyVersion = "0.24.0-RC1"
 
 lazy val root = project
   .in(file("."))
@@ -11,6 +11,6 @@ lazy val root = project
     scalaVersion := dottyVersion,
 
     libraryDependencies ++= Seq(
-      "com.twitter" % "util-core_2.13" % "20.4.0"
+      "com.twitter" % "util-core_2.13" % "20.4.1"
     )
   )
