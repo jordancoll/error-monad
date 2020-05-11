@@ -10,5 +10,5 @@ object Outcome {
 
   def value[A](a: A): Outcome[Nothing, A] = apply(Right(a))
 
-  def error[E](e: E): Outcome[E, Nothing] = apply(Left(e))
+  def error[E, T](e: E): Outcome[E, T] = apply(Left(e))
 }

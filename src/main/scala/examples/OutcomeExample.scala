@@ -15,13 +15,10 @@ case class PommesWithSauce(pommes: Pommes, sauce: Sauce)
 
 object OutcomeExample extends App {
 
-  val outcome: Outcome[GetPotatoError | MakePommesError, PommesWithSauce] = for {
+  val outcome: Outcome[GetPotatoError | MakePommesError, Pommes] = for {
     potato <- getPotato()
     pommes <- makePommes(potato)
-    result <- addSauce(pommes, Sauce.Mayo).handleErrors {
-      case OutOfSauce(_) => PommesWithSauce(pommes, Sauce.Ketchup)
-    }
-  } yield result
+  } yield pommes
 
   Await.result(outcome.value) match {
     case Left(GetPotatoError(_)) => Console.err.println("Could not get potato")

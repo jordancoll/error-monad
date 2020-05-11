@@ -33,4 +33,4 @@ def eithetTErrorMonad[F[+_]](using m: Monad[F]) = new ErrorMonad[[L, R] =>> Eith
   }
 }
 
-given outcomeErrorMonad as ErrorMonad[Outcome] = eithetTErrorMonad
+// given outcomeErrorMonad as ErrorMonad[Outcome] = eithetTErrorMonad
