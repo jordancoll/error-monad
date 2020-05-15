@@ -4,7 +4,7 @@ import classes._
 import data._
 import com.twitter.util.Future
 
-def eithetTErrorMonad[F[+_]](using m: Monad[F]) = new ErrorMonad[[L, R] =>> EitherT[F, L, R]] {
+given eithetTErrorMonad[F[_]](using m: Monad[F]) as ErrorMonad[[L, R] =>> EitherT[F, L, R]] {
 
   override def pure[L, R](a: R): EitherT[F, L, R] = {
     val e: Either[L, R] = Right(a)
@@ -14,8 +14,8 @@ def eithetTErrorMonad[F[+_]](using m: Monad[F]) = new ErrorMonad[[L, R] =>> Eith
   override def [L, LL, R, RR](eitherT: EitherT[F, L, R])
      flatMap(f: R => EitherT[F, LL, RR]): EitherT[F, L | LL, RR] = {
     val either = m.flatMap(eitherT.value) {
-      case Right(v) => f(v).value
-      case Left(e) => m.pure(Left(e))
+      case Right(v) => f(v).value.map(either => either: Either[L | LL, RR])
+      case Left(e) => m.pure(Left(e: L | LL)): F[Either[L | LL, RR]]
     }
     EitherT(either)
   }
@@ -33,4 +33,7 @@ def eithetTErrorMonad[F[+_]](using m: Monad[F]) = new ErrorMonad[[L, R] =>> Eith
   }
 }
 
-given outcomeErrorMonad as ErrorMonad[Outcome] = eithetTErrorMonad
+
+// Although compiller can derrive `implicitly[ErrorMonad[[L, R] =>> EitherT[Future, L, R]]]`
+// for comprehension is not going to work without the following workaround:
+given outcomeErrorMonad as ErrorMonad[[L, R] =>> EitherT[Future, L, R]] = eithetTErrorMonad
