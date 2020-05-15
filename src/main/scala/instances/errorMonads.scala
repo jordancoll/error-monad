@@ -34,6 +34,6 @@ given eithetTErrorMonad[F[_]](using m: Monad[F]) as ErrorMonad[[L, R] =>> Either
 }
 
 
-// Although compiller can derrive `implicitly[ErrorMonad[[L, R] =>> EitherT[Future, L, R]]]`
+// Although the compiler can derrive `implicitly[ErrorMonad[[L, R] =>> EitherT[Future, L, R]]]`
 // for comprehension is not going to work without the following workaround:
 given outcomeErrorMonad as ErrorMonad[[L, R] =>> EitherT[Future, L, R]] = eithetTErrorMonad
