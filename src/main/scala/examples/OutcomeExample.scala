@@ -4,7 +4,7 @@ import classes._
 import instances.{_, given _}
 import data._
 
-import com.twitter.util.{Await, Future}
+import com.twitter.util.Await
 
 case class Potato(potatoId: Int)
 case class Pommes(potato: Potato)
