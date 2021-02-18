@@ -1,4 +1,4 @@
-val dottyVersion = "0.26.0"
+val dottyVersion = "3.0.0-RC1"
 
 lazy val root = project
   .in(file("."))
@@ -6,11 +6,9 @@ lazy val root = project
     name := "error-monad",
     version := "0.1.0",
 
-    scalacOptions ++= Seq("-Xfatal-warnings"),
-
     scalaVersion := dottyVersion,
 
     libraryDependencies ++= Seq(
-      "com.twitter" % "util-core_2.13" % "20.9.0"
+      "com.twitter" % "util-core_2.13" % "21.2.0"
     )
   )

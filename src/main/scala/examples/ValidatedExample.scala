@@ -1,8 +1,8 @@
 package examples
 
 import classes._
-import instances.{given _}
 import data.Validated
+import instances.given
 
 import Validated._
 
@@ -16,9 +16,8 @@ case class InvalidName(name: Name)
 case class InvalidAge(age: Age)
 case class InvalidAdress(address: Address)
 
-def validate(name: Name, age: Age, address: Address): Validated[InvalidName | InvalidAge | InvalidAdress, Student] = {
+def validate(name: Name, age: Age, address: Address): Validated[InvalidName | InvalidAge | InvalidAdress, Student] =
   (validateName(name), validateAge(age), validateAddress(address)) mapN Student.apply
-}
 
 private def validateName(name: Name): Validated[InvalidName, Name] =
   if name.value.length < 2 then
@@ -38,6 +37,6 @@ private def validateAddress(address: Address): Validated[InvalidAdress, Address]
   else
     Valid(address)
 
-object ValidatedExample extends App {
+object ValidatedExample extends App:
   println(validate(Name("Joe"), Age(20), Address("4881 Duff Avenue 1")))
-}
+

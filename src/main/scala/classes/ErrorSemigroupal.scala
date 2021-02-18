@@ -1,8 +1,7 @@
 package classes
 
-trait ErrorSemigroupal[F[_, _]] {
+trait ErrorSemigroupal[F[_, _]]:
 
-  extension [EA, EB, A, B](fa: F[EA, A])
-    def product(fb: F[EB, B]): F[EA | EB, (A, B)]
+  extension [EA, A](fa: F[EA, A])
+    def product[EB, B](fb: F[EB, B]): F[EA | EB, (A, B)]
 
-}

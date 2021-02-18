@@ -1,15 +1,11 @@
 package classes
 
-trait Monad[F[_]] {
+trait Monad[F[_]]:
   
   def pure[A](a: A): F[A]
 
-  extension [A, B](fa: F[A]) {
-    def flatMap(f: A => F[B]): F[B]
+  extension [A](fa: F[A])
 
-    def map(f: A => B): F[B] = {
-      fa.flatMap(a => pure(f(a)))
-    }
-  }
+    def flatMap[B](f: A => F[B]): F[B]
 
-}
+    def map[B](f: A => B): F[B] = fa.flatMap(a => pure(f(a)))

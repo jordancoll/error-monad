@@ -22,7 +22,7 @@ val pommes = for {
 } yield pommes //: Either[GetPotatoError | MakePommesError, Pommes]
 ```
 
-You can check out a more detailed example that uses an async context [here](./src/main/scala/examples/OutcomeExample.scala). We supplied an implementation using `com.twitter.util.Future`, but it can be easily swapped out for any other effect library (like `cats-effect`).
+You can check out a more detailed example that uses an async context [here](./src/main/scala/examples/EitherFExample.scala). We supplied an implementation using `com.twitter.util.Future`, but it can be easily swapped out for any other effect library (like `cats-effect`).
 
 ## `ErrorApplicative`
 Similar to `ErrorMonad`, we defined the `ErrorApplicative` type class that can express parallel composition:
