@@ -1,8 +1,8 @@
 package examples
 
-import classes._
 import data.Validated
 import instances.given
+import syntax.*
 
 import Validated._
 

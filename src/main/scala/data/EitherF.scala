@@ -11,4 +11,3 @@ object EitherF:
   def value[E, A](a: A): EitherF[E, A] = apply(Right(a))
 
   def error[E, A](e: E): EitherF[E, A] = apply(Left(e))
-

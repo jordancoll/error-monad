@@ -1,8 +1,8 @@
 package examples
 
-import classes.*
-import instances.{*, given}
-import data.*
+import data.EitherF
+import instances.given
+import syntax.*
 
 import com.twitter.util.Await
 
@@ -17,7 +17,7 @@ case class PommesWithSauce(pommes: Pommes, sauce: Sauce)
 
 object EitherFExample extends App:
 
-  val eitherF: EitherF[GetPotatoError | MakePommesError, PommesWithSauce] = 
+  val eitherF = 
     for
       potato <- getPotato()
       pommes <- makePommes(potato)

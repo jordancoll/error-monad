@@ -1,6 +1,6 @@
 package instances
 
-import classes.*
+import classes.Monad
 import com.twitter.util.Future
 
 given Monad[List] with

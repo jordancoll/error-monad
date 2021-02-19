@@ -2,6 +2,4 @@ package classes
 
 trait ErrorSemigroupal[F[_, _]]:
 
-  extension [EA, A](fa: F[EA, A])
-    def product[EB, B](fb: F[EB, B]): F[EA | EB, (A, B)]
-
+  def product[EA, A, EB, B](fa: F[EA, A], fb: F[EB, B]): F[EA | EB, (A, B)]
